@@ -20,8 +20,10 @@ public class Account {
         history.add(operation);
     }
 
-    public void withdrawal(double amount) {
+    public void withdrawal(double amount, LocalDate date) {
         balance -= amount;
+        Operation operation = new Operation(amount, date);
+        history.add(operation);
     }
 
     public double getBalance() {

@@ -35,7 +35,7 @@ public class AccountTest {
     public void should_decrease_amount_when_making_withdrawal() {
         double withdrawalAmount = 100.50;
 
-        account.withdrawal(withdrawalAmount);
+        account.withdrawal(withdrawalAmount, LocalDate.now());
 
         assertEquals(-withdrawalAmount, account.getBalance());
     }
@@ -48,5 +48,15 @@ public class AccountTest {
         account.deposit(depositAmount, depositDate);
 
         verify(history).add(new Operation(depositAmount, depositDate));
+    }
+
+    @Test
+    public void should_create_operation_when_making_withdrawal() {
+        LocalDate withdrawalDate = LocalDate.now();
+        double withdrawalAmount = 100.50;
+
+        account.withdrawal(withdrawalAmount, withdrawalDate);
+
+        verify(history).add(new Operation(withdrawalAmount, withdrawalDate));
     }
 }
