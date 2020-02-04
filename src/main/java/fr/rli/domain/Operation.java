@@ -1,5 +1,6 @@
 package fr.rli.domain;
 
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -12,6 +13,10 @@ public class Operation {
     public Operation(double amount, LocalDate date) {
         this.amount = amount;
         this.date = date;
+    }
+
+    public void print(PrintStream printStream) {
+
     }
 
     @Override

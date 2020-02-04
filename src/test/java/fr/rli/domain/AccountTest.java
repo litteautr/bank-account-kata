@@ -1,5 +1,5 @@
-import fr.rli.domain.Account;
-import fr.rli.domain.Operation;
+package fr.rli.domain;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
