@@ -15,18 +15,19 @@ public class Account {
     }
 
     public void deposit(double amount, LocalDate date) {
-        balance += amount;
-        Operation operation = new Operation(amount, date);
-        history.add(operation);
+        executeOperation(amount, date);
     }
 
     public void withdrawal(double amount, LocalDate date) {
-        balance -= amount;
-        Operation operation = new Operation(amount, date);
-        history.add(operation);
+        executeOperation(-amount, date);
     }
 
     public double getBalance() {
         return balance;
+    }
+
+    private void executeOperation(double amount, LocalDate date) {
+        balance += amount;
+        history.add(new Operation(amount, date));
     }
 }

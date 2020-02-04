@@ -13,6 +13,9 @@ import static org.mockito.Mockito.verify;
 
 public class AccountTest {
 
+    private static final double OPERATION_AMOUNT = 100.50;
+    private static final LocalDate OPERATION_DATE = LocalDate.now();
+
     private Account account;
     private List<Operation> history;
 
@@ -24,39 +27,29 @@ public class AccountTest {
 
     @Test
     public void should_increase_amount_when_making_deposit() {
-        double depositAmount = 100.50;
+        account.deposit(OPERATION_AMOUNT, OPERATION_DATE);
 
-        account.deposit(depositAmount, LocalDate.now());
-
-        assertEquals(depositAmount, account.getBalance());
+        assertEquals(OPERATION_AMOUNT, account.getBalance());
     }
 
     @Test
     public void should_decrease_amount_when_making_withdrawal() {
-        double withdrawalAmount = 100.50;
+        account.withdrawal(OPERATION_AMOUNT, OPERATION_DATE);
 
-        account.withdrawal(withdrawalAmount, LocalDate.now());
-
-        assertEquals(-withdrawalAmount, account.getBalance());
+        assertEquals(-OPERATION_AMOUNT, account.getBalance());
     }
 
     @Test
     public void should_create_operation_when_making_deposit() {
-        LocalDate depositDate = LocalDate.now();
-        double depositAmount = 100.50;
+        account.deposit(OPERATION_AMOUNT, OPERATION_DATE);
 
-        account.deposit(depositAmount, depositDate);
-
-        verify(history).add(new Operation(depositAmount, depositDate));
+        verify(history).add(new Operation(OPERATION_AMOUNT, OPERATION_DATE));
     }
 
     @Test
     public void should_create_operation_when_making_withdrawal() {
-        LocalDate withdrawalDate = LocalDate.now();
-        double withdrawalAmount = 100.50;
+        account.withdrawal(OPERATION_AMOUNT, OPERATION_DATE);
 
-        account.withdrawal(withdrawalAmount, withdrawalDate);
-
-        verify(history).add(new Operation(withdrawalAmount, withdrawalDate));
+        verify(history).add(new Operation(-OPERATION_AMOUNT, OPERATION_DATE));
     }
 }
