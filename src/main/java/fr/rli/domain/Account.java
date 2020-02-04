@@ -8,6 +8,9 @@ public class Account {
         balance += amount;
     }
 
+    public void withdrawal(double amount) {
+    }
+
     public double getBalance() {
         return balance;
     }
