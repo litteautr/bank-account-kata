@@ -1,6 +1,5 @@
 package fr.rli.domain;
 
-import java.io.PrintStream;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -19,14 +18,14 @@ public class Operation {
         this.date = date;
     }
 
-    public void print(PrintStream printStream, double accountBalance) {
+    public void print(double accountBalance) {
         StringBuilder operationBuilder = new StringBuilder()
                 .append(date.toString())
                 .append(SEPARATOR)
                 .append(amountDecimalFormat.format(amount))
                 .append(SEPARATOR)
                 .append(amountDecimalFormat.format(accountBalance));
-        printStream.println(operationBuilder.toString());
+        System.out.println(operationBuilder.toString());
     }
 
     @Override

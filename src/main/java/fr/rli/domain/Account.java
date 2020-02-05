@@ -1,6 +1,5 @@
 package fr.rli.domain;
 
-import java.io.PrintStream;
 import java.time.LocalDate;
 
 public class Account {
@@ -21,8 +20,8 @@ public class Account {
         executeOperation(-amount, date);
     }
 
-    public void printHistory(PrintStream printStream) {
-        history.print(printStream);
+    public void printHistory() {
+        history.print();
     }
 
     public double getBalance() {

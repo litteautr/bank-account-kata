@@ -17,10 +17,11 @@ public class HistoryLineTest {
         Operation operation = new Operation(depositAmount, depositDate);
 
         HistoryLine historyLine = new HistoryLine(operation, 100.5);
-        PrintStream printStream = mock(PrintStream.class);
 
-        historyLine.print(printStream);
+        System.setOut(mock(PrintStream.class));
 
-        verify(printStream).println("2020-02-02 || 100.50 || 100.50");
+        historyLine.print();
+
+        verify(System.out).println("2020-02-02 || 100.50 || 100.50");
     }
 }

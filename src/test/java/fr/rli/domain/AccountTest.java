@@ -11,9 +11,6 @@ import static org.mockito.Mockito.verify;
 
 public class AccountTest {
 
-    private static final double OPERATION_AMOUNT = 100.50;
-    private static final LocalDate OPERATION_DATE = LocalDate.now();
-
     private Account account;
     private AccountHistory history;
 
@@ -65,7 +62,7 @@ public class AccountTest {
 
     @Test
     public void should_print_account_history() {
-        account.printHistory(System.out);
-        verify(history).print(System.out);
+        account.printHistory();
+        verify(history).print();
     }
 }

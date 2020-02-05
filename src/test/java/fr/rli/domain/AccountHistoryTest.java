@@ -19,6 +19,8 @@ public class AccountHistoryTest {
     @BeforeEach
     public void initialise() {
         printStream = mock(PrintStream.class);
+        System.setOut(printStream);
+
         history = new AccountHistory();
     }
 
@@ -30,9 +32,9 @@ public class AccountHistoryTest {
 
         history.addHistoryLine(operation, 100.5);
 
-        history.print(printStream);
+        history.print();
 
-        verify(printStream).println("2020-02-02 || 100.50 || 100.50");
+        verify(System.out).println("2020-02-02 || 100.50 || 100.50");
     }
 
     @Test
@@ -47,10 +49,10 @@ public class AccountHistoryTest {
 
         InOrder orderedPrint = Mockito.inOrder(printStream);
 
-        history.print(printStream);
+        history.print();
 
-        orderedPrint.verify(printStream).println("2020-02-04 || 1000.75 || 900.75");
-        orderedPrint.verify(printStream).println("2020-02-03 || -200.00 || -100.00");
-        orderedPrint.verify(printStream).println("2020-02-02 || 100.00 || 100.00");
+        orderedPrint.verify(System.out).println("2020-02-04 || 1000.75 || 900.75");
+        orderedPrint.verify(System.out).println("2020-02-03 || -200.00 || -100.00");
+        orderedPrint.verify(System.out).println("2020-02-02 || 100.00 || 100.00");
     }
 }

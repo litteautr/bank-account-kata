@@ -1,7 +1,5 @@
 package fr.rli.domain;
 
-import java.io.PrintStream;
-
 public class HistoryLine {
 
     private Operation operation;
@@ -12,7 +10,7 @@ public class HistoryLine {
         this.accountBalance = accountBalance;
     }
 
-    public void print(PrintStream printStream) {
-        operation.print(printStream, accountBalance);
+    public void print() {
+        operation.print(accountBalance);
     }
 }

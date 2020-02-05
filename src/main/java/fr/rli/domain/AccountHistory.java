@@ -1,6 +1,5 @@
 package fr.rli.domain;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,9 +12,9 @@ public class AccountHistory {
         historyLines.add(new HistoryLine(operation, accountBalance));
     }
 
-    public void print(PrintStream printStream) {
+    public void print() {
         orderHistoryLineForPrinting();
-        historyLines.forEach(historyLine -> historyLine.print(printStream));
+        historyLines.forEach(HistoryLine::print);
     }
 
     private void orderHistoryLineForPrinting() {
