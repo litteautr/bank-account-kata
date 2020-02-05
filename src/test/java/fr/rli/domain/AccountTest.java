@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -51,5 +49,11 @@ public class AccountTest {
         account.withdrawal(OPERATION_AMOUNT, OPERATION_DATE);
 
         verify(history).addHistoryLine(new Operation(-OPERATION_AMOUNT, OPERATION_DATE), -OPERATION_AMOUNT);
+    }
+
+    @Test
+    public void should_print_account_history() {
+        account.printHistory(System.out);
+        verify(history).print(System.out);
     }
 }

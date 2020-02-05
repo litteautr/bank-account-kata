@@ -1,8 +1,7 @@
 package fr.rli.domain;
 
+import java.io.PrintStream;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Account {
 
@@ -22,6 +21,10 @@ public class Account {
         executeOperation(-amount, date);
     }
 
+    public void printHistory(PrintStream printStream) {
+        history.print(printStream);
+    }
+
     public double getBalance() {
         return balance;
     }
@@ -30,4 +33,6 @@ public class Account {
         balance += amount;
         history.addHistoryLine(new Operation(amount, date), balance);
     }
+
+
 }
