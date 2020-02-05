@@ -2,6 +2,7 @@ package fr.rli.domain;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AccountHistory {
@@ -13,6 +14,11 @@ public class AccountHistory {
     }
 
     public void print(PrintStream printStream) {
+        orderHistoryLineForPrinting();
         historyLines.forEach(historyLine -> historyLine.print(printStream));
+    }
+
+    private void orderHistoryLineForPrinting() {
+        Collections.reverse(historyLines);
     }
 }
