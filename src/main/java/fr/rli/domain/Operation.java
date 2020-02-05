@@ -7,6 +7,7 @@ import java.util.Objects;
 
 public class Operation {
 
+    private static final String SEPARATOR = " || ";
     private DecimalFormat amountDecimalFormat = new DecimalFormat("#.00");
 
     private double amount;
@@ -18,11 +19,13 @@ public class Operation {
         this.date = date;
     }
 
-    public void print(PrintStream printStream) {
+    public void print(PrintStream printStream, double accountBalance) {
         StringBuilder operationBuilder = new StringBuilder()
                 .append(date.toString())
-                .append(" || ")
-                .append(amountDecimalFormat.format(amount));
+                .append(SEPARATOR)
+                .append(amountDecimalFormat.format(amount))
+                .append(SEPARATOR)
+                .append(amountDecimalFormat.format(accountBalance));
         printStream.println(operationBuilder.toString());
     }
 

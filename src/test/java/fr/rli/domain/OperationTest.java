@@ -15,10 +15,11 @@ public class OperationTest {
         double depositAmount = 100.50;
         LocalDate depositDate = LocalDate.of(2020, 02, 02);
         Operation operation = new Operation(depositAmount, depositDate);
+
         PrintStream printStream = mock(PrintStream.class);
 
-        operation.print(printStream);
+        operation.print(printStream, 100.50);
 
-        verify(printStream).println("2020-02-02 || 100.50");
+        verify(printStream).println("2020-02-02 || 100.50 || 100.50");
     }
 }

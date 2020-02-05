@@ -13,5 +13,6 @@ public class HistoryLine {
     }
 
     public void print(PrintStream printStream) {
+        operation.print(printStream, accountBalance);
     }
 }
