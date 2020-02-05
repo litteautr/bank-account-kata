@@ -17,11 +17,11 @@ public class AccountTest {
     private static final LocalDate OPERATION_DATE = LocalDate.now();
 
     private Account account;
-    private List<Operation> history;
+    private AccountHistory history;
 
     @BeforeEach
     public void initialise() {
-        history = mock(ArrayList.class);
+        history = mock(AccountHistory.class);
         account = new Account(history);
     }
 
@@ -40,16 +40,16 @@ public class AccountTest {
     }
 
     @Test
-    public void should_create_operation_when_making_deposit() {
+    public void should_create_history_line_when_making_deposit() {
         account.deposit(OPERATION_AMOUNT, OPERATION_DATE);
 
-        verify(history).add(new Operation(OPERATION_AMOUNT, OPERATION_DATE));
+        verify(history).addHistoryLine(new Operation(OPERATION_AMOUNT, OPERATION_DATE), OPERATION_AMOUNT);
     }
 
     @Test
-    public void should_create_operation_when_making_withdrawal() {
+    public void should_create_history_line_when_making_withdrawal() {
         account.withdrawal(OPERATION_AMOUNT, OPERATION_DATE);
 
-        verify(history).add(new Operation(-OPERATION_AMOUNT, OPERATION_DATE));
+        verify(history).addHistoryLine(new Operation(-OPERATION_AMOUNT, OPERATION_DATE), -OPERATION_AMOUNT);
     }
 }

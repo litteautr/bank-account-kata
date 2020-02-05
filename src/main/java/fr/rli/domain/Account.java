@@ -8,9 +8,9 @@ public class Account {
 
     private double balance = 0.0;
 
-    private List<Operation> history;
+    private AccountHistory history;
 
-    public Account(List<Operation> history) {
+    public Account(AccountHistory history) {
         this.history = history;
     }
 
@@ -28,6 +28,6 @@ public class Account {
 
     private void executeOperation(double amount, LocalDate date) {
         balance += amount;
-        history.add(new Operation(amount, date));
+        history.addHistoryLine(new Operation(amount, date), balance);
     }
 }
