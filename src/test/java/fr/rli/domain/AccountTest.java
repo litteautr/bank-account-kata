@@ -25,30 +25,42 @@ public class AccountTest {
 
     @Test
     public void should_increase_amount_when_making_deposit() {
-        account.deposit(OPERATION_AMOUNT, OPERATION_DATE);
+        double depositAmount = 100.5;
+        LocalDate depositDate = LocalDate.now();
 
-        assertEquals(OPERATION_AMOUNT, account.getBalance());
+        account.deposit(depositAmount, depositDate);
+
+        assertEquals(100.5, account.getBalance());
     }
 
     @Test
     public void should_decrease_amount_when_making_withdrawal() {
-        account.withdrawal(OPERATION_AMOUNT, OPERATION_DATE);
+        double withdrawalAmount = 100.5;
+        LocalDate withdrawalDate = LocalDate.now();
 
-        assertEquals(-OPERATION_AMOUNT, account.getBalance());
+        account.withdrawal(withdrawalAmount, withdrawalDate);
+
+        assertEquals(-100.5, account.getBalance());
     }
 
     @Test
     public void should_create_history_line_when_making_deposit() {
-        account.deposit(OPERATION_AMOUNT, OPERATION_DATE);
+        double depositAmount = 100.5;
+        LocalDate depositDate = LocalDate.now();
 
-        verify(history).addHistoryLine(new Operation(OPERATION_AMOUNT, OPERATION_DATE), OPERATION_AMOUNT);
+        account.deposit(depositAmount, depositDate);
+
+        verify(history).addHistoryLine(new Operation(depositAmount, depositDate), 100.5);
     }
 
     @Test
     public void should_create_history_line_when_making_withdrawal() {
-        account.withdrawal(OPERATION_AMOUNT, OPERATION_DATE);
+        double withdrawalAmount = 100.5;
+        LocalDate withdrawalDate = LocalDate.now();
 
-        verify(history).addHistoryLine(new Operation(-OPERATION_AMOUNT, OPERATION_DATE), -OPERATION_AMOUNT);
+        account.withdrawal(withdrawalAmount, withdrawalDate);
+
+        verify(history).addHistoryLine(new Operation(-withdrawalAmount, withdrawalDate), -100.5);
     }
 
     @Test

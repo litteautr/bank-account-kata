@@ -14,10 +14,10 @@ public class Main {
     public static void main(String[] args) {
         Account account = new Account(new AccountHistory());
 
-        account.deposit(100, LocalDate.of(2020,01,30));
-        account.withdrawal(200, LocalDate.of(2020,01,31));
-        account.deposit(1000.75, LocalDate.of(2020,02,02));
-        account.withdrawal(2000.25, LocalDate.of(2020,02,02));
+        account.deposit(100, LocalDate.of(2020,1,30));
+        account.withdrawal(200, LocalDate.of(2020,1,31));
+        account.deposit(1000.75, LocalDate.of(2020,2,2));
+        account.withdrawal(2000.25, LocalDate.of(2020,2,2));
 
         account.printHistory(System.out);
     }

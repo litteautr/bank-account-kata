@@ -1,5 +1,6 @@
 package fr.rli.domain;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
@@ -12,16 +13,22 @@ import static org.mockito.Mockito.verify;
 
 public class AccountHistoryTest {
 
+    private AccountHistory history;
+    private PrintStream printStream;
+
+    @BeforeEach
+    public void initialise() {
+        printStream = mock(PrintStream.class);
+        history = new AccountHistory();
+    }
+
     @Test
     public void should_print_one_history_line() {
-        double depositAmount = 100.50;
-        LocalDate depositDate = LocalDate.of(2020, 02, 02);
+        double depositAmount = 100.5;
+        LocalDate depositDate = LocalDate.of(2020, 2, 2);
         Operation operation = new Operation(depositAmount, depositDate);
 
-        AccountHistory history = new AccountHistory();
-        history.addHistoryLine(operation, 100.50);
-
-        PrintStream printStream = mock(PrintStream.class);
+        history.addHistoryLine(operation, 100.5);
 
         history.print(printStream);
 
@@ -29,17 +36,15 @@ public class AccountHistoryTest {
     }
 
     @Test
-    public void should_print_preserve_order_for_multiple_line_history() {
-        Operation firstOperation = new Operation(100, LocalDate.of(2020, 02, 02));
-        Operation secondOperation = new Operation(-200, LocalDate.of(2020, 02, 03));
-        Operation thirdOperation = new Operation(1000.75, LocalDate.of(2020, 02, 04));
+    public void should_preserve_order_for_multiple_line_history() {
+        Operation firstOperation = new Operation(100, LocalDate.of(2020, 2, 2));
+        Operation secondOperation = new Operation(-200, LocalDate.of(2020, 2, 3));
+        Operation thirdOperation = new Operation(1000.75, LocalDate.of(2020, 2, 4));
 
-        AccountHistory history = new AccountHistory();
         history.addHistoryLine(firstOperation, 100);
         history.addHistoryLine(secondOperation, -100);
         history.addHistoryLine(thirdOperation, 900.75);
 
-        PrintStream printStream = mock(PrintStream.class);
         InOrder orderedPrint = Mockito.inOrder(printStream);
 
         history.print(printStream);

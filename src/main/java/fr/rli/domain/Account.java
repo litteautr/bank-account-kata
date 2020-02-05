@@ -33,6 +33,4 @@ public class Account {
         balance += amount;
         history.addHistoryLine(new Operation(amount, date), balance);
     }
-
-
 }
